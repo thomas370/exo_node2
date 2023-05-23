@@ -14,4 +14,4 @@ const EnterpriseSchema = new mongoose.Schema(
     {timestamps: true}
 );
 
-module.exports = mongoose.model("Enterprise", EnterpriseSchema);
+module.exports = mongoose.model("Enterprise", EnterpriseSchema, 'enterprises');

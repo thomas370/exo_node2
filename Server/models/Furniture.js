@@ -18,4 +18,4 @@ const FurnitureSchema = new mongoose.Schema(
     {timestamps: true}
 );
 
-module.exports = mongoose.model("Furniture", FurnitureSchema);
+module.exports = mongoose.model("Furniture", FurnitureSchema, 'furnitures');

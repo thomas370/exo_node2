@@ -1,4 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
 @import 'normalize';
 @import 'colors';
 @import 'typos';
 @import '../responsive/responsive';
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn {
+  padding: 10px 40px;
+  border: none;
+  background: #eee;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.16);
+  transition: all .3s ease-in-out;
+  &:hover {
+    background: #ddd;
+  }
+}

@@ -1,10 +1,17 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const dotenv = require('dotenv');
 const helmet = require('helmet');
 const morgan = require("morgan");
-const postRoute = require('./routes/posts');
+const furnitureRoute = require('./routes/furnitures');
+const userRoute = require('./routes/users.js');
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const myPlaintextPassword = 'johndoe123';
+const hash = '$2b$10$Jjo4NW1a9bozYnLUlBlk.epah4yfwt8oMoshTeHUomotHEDi1JZaG';
+
 
 dotenv.config();
 
@@ -25,9 +32,10 @@ const port = process.env.PORT;
 app.use(express.json());
 app.use(helmet());
 app.use(morgan('common'));
+app.use(cors());
 
 // Routes
-app.use('/api/post', postRoute);
+app.use('/user', userRoute);
 
 
 app.listen(port, () => {
