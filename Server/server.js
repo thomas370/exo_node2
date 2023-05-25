@@ -6,6 +6,8 @@ const helmet = require('helmet');
 const morgan = require("morgan");
 const furnitureRoute = require('./routes/furnitures');
 const userRoute = require('./routes/users.js');
+const materialRoute = require('./routes/materials');
+const categoryRoute = require('./routes/categories');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -36,6 +38,9 @@ app.use(cors());
 
 // Routes
 app.use('/user', userRoute);
+app.use('/materials', materialRoute);
+app.use('/categories', categoryRoute);
+app.use('/furnitures', furnitureRoute);
 
 
 app.listen(port, () => {

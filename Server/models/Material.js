@@ -8,7 +8,15 @@ const MaterialSchema = new mongoose.Schema(
         },
         enterprise: {
             type: String,
-            max: true,
+            max: 500,
+        },
+        desc: {
+            type: String,
+            max: 10000,
+        },
+        img: {
+            type: String,
+            max: 500,
         },
     },
     {timestamps: true}

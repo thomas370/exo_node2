@@ -29,8 +29,10 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     try {
-        const furniture = await Furniture.findById(req.params.id);
-        await furniture.deleteOne();
+        const furniture = await Furniture.findByIdAndDelete(req.params.id);
+        if (!furniture) {
+            return res.status(404).json('Le meuble n\'existe pas.');
+        }
         res.status(200).json('Le meuble à bien été supprimé !');
     } catch(err) {
         res.status(500).json(err);
@@ -50,7 +52,7 @@ router.get('/:id', async (req, res) => {
 
 //Récupération de tous les meubles
 
-router.get('/all', async (req, res) => {
+router.get('/all/list', async (req, res) => {
     try {
         const furnitures = await Furniture.find();
         res.status(200).json(furnitures);

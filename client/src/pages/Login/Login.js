@@ -64,7 +64,7 @@ const Login = () => {
     return (
         <div className="login-container">
             <div className="form-container">
-            <h1>Connexion</h1>
+            <h1>Connection</h1>
             <form className="login-form">
                 <div className="form-group">
                     <input type="text" placeholder="name" onChange={handleName} />
