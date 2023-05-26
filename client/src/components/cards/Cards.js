@@ -2,7 +2,7 @@ import './cards.scss';
 import axios from "axios";
 import React,{useEffect, useState} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faPenToSquare, faUpRightFromSquare, faXmark,faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faUpRightFromSquare, faXmark,faTrash } from '@fortawesome/free-solid-svg-icons'
 import {Link} from "react-router-dom";
 
 const Cards = () => {
@@ -55,8 +55,6 @@ const Cards = () => {
         }
     , []);
 
-    useEffect(() => {
-    }, [materialsAdd]);
 
     useEffect(() => {
     }, [furnitures]);
@@ -108,6 +106,7 @@ const Cards = () => {
                     setSuccess('Votre meuble a bien été ajouté !');
                     input.value="";
                     select.value="";
+                    setMaterialsAdd([]);
                     return axios.get('http://localhost:8000/furnitures/all/list');
                 })
                 .then((res) => {
@@ -149,7 +148,6 @@ const Cards = () => {
     return (
         <div>
             <div className="cards">
-                <div className={`alert ${success ? 'active-success' : ''}${error ? 'active-error' : ''}`}></div>
             <div className="div1">
                 <table>
                     <thead>
@@ -174,18 +172,17 @@ const Cards = () => {
                                     </td>
                                     <td className="capitalize">{furniture.category}</td>
                                     <td className="actions">
-                                        <Link className='edit' to=''><FontAwesomeIcon icon={faPenToSquare}/></Link>
                                         <Link onClick={() => openDeleteModal(furniture._id)} className='delete' to=''><FontAwesomeIcon icon={faTrash}/></Link>
                                     </td>
-                                    <td>
                                         {showDeleteModal && (
+                                    <td>
                                             <div className="modal active">
                                                 <p>Confirmez-vous la suppression ?</p>
                                                 <button onClick={(e) => deleteFurniture(deleteItemId, e)}>Oui</button>
                                                 <button onClick={() => setShowDeleteModal(false)}>Non</button>
                                             </div>
-                                        )}
                                     </td>
+                                        )}
                                 </tr>
                             ))
                         }
@@ -216,6 +213,9 @@ const Cards = () => {
                         </div>
                         <button onClick={handleSubmit} type={"submit"}>Ajouter</button>
                     </form>
+                    <div className={`alert ${success ? 'active-success' : ''}${error ? 'active-error' : ''}`}>{
+                        success
+                    }</div>
                     <div className="tags">
                         {
                             materialsAdd &&
@@ -241,7 +241,6 @@ const Cards = () => {
                                     <td className="materialss capitalize"><Link to={`/material/${material.name}`} target="_blank">{material.name}<FontAwesomeIcon icon={faUpRightFromSquare}/></Link></td>
                                     <td>{material.enterprise}</td>
                                     <td className="actions">
-                                        <Link className='edit' to='/'><FontAwesomeIcon icon={faPenToSquare}/></Link>
                                         <Link className='delete' to='/'><FontAwesomeIcon icon={faTrash}/></Link>
                                     </td>
                                 </tr>
@@ -262,7 +261,6 @@ const Cards = () => {
                                 <tr key={categorie.id}>
                                     <td className="capitalize">{categorie.name}</td>
                                     <td className="actions">
-                                        <Link className='edit' to='/'><FontAwesomeIcon icon={faPenToSquare}/></Link>
                                         <Link className='delete' to='/'><FontAwesomeIcon icon={faTrash}/></Link>
                                     </td>
                                 </tr>

@@ -134,8 +134,7 @@ table {
     }
     .div1 { grid-area: 3 / 1 / 5 / 6; }
     .div2 { grid-area: 5 / 1 / 6 / 6; }
-    .div3 {
-        rid-area: 1 / 1 / 3 / 6}
+    .div3 {grid-area: 1 / 1 / 3 / 6}
 }
 
 @media (max-width: 480px) {
@@ -211,5 +210,19 @@ table {
         background-color: #d10808;
             color: white;
     }
+    }
+}
+
+.alert {
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px 20px;
+    color: white;
+    text-align: center;
+    &.active-success {
+        background-color: #048c4d;
+    }
+    &.active-error {
+        background-color: #d10808;
     }
 }

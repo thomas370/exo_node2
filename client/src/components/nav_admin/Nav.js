@@ -12,6 +12,11 @@ const Nav = () => {
         console.log(e.target.value);
     }
 
+     const logout = () => {
+        localStorage.removeItem('id');
+        window.location.reload();
+     }
+
     return (
         <div>
             <div className="nav">
@@ -19,12 +24,7 @@ const Nav = () => {
                     <div className={`${toggle ? 'active' : ''}`} id="nav-toggle" onClick={() => setToggle(!toggle)}></div>
                     <nav className={`${toggle ? 'active' : ''}`}>
                         <ul>
-                            <div className="nav-search">
-                                <input className="input-center" type="text" placeholder="Search" onChange={onSearch} />
-                                <FontAwesomeIcon icon={faMagnifyingGlass} />
-                            </div>
-                            <hr/>
-                            <li><Link to="/">Logout</Link></li>
+                            <li onClick={logout}>Logout</li>
                         </ul>
                     </nav>
                     <Link to='/admin'>Logo</Link>
